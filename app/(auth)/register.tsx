@@ -6,9 +6,8 @@ import { Colors } from '@/constants/colors'
 import { signUp } from '@/context/authService'
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import { Link } from 'expo-router'
 import React, { useState } from 'react'
-import { Alert, StyleSheet, Text, View } from 'react-native'
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList, "Register">
 
@@ -90,9 +89,10 @@ const Register = () => {
                 textStyle={{ fontSize: 12, fontWeight: 'light', color: Colors.text }}
             />
             <View style={{ position: 'absolute', bottom: 10, flexDirection: 'row', justifyContent: 'center', alignSelf: 'center', alignItems: 'center', marginVertical: 20 }}>
-                <Text>
-                    <Text style={{ fontSize: 16, fontWeight: 'regular', color: Colors.text }}>Do you have an account?</Text> <Link href="/(auth)/login"><Text style={{ fontSize: 16, fontWeight: "regular", color: Colors.primaryNormal }}>Sign In</Text></Link>
-                </Text>
+                <Text style={{ fontSize: 16, fontWeight: 'regular', color: Colors.text }}>Do you have an account? </Text>
+                <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+                    <Text style={{ fontSize: 16, fontWeight: "regular", color: Colors.primaryNormal }}>Sign In</Text>
+                </TouchableOpacity>
             </View>
 
 
@@ -104,5 +104,14 @@ const Register = () => {
 export default Register
 
 const styles = StyleSheet.create({
-    alert: {}
+    alert: {
+        backgroundColor: Colors.cardBackground,
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: Colors.gymIcon,
+        paddingVertical: 20,
+        alignSelf: "center",
+        width: '100%',
+
+    }
 })

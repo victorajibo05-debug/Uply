@@ -1,15 +1,20 @@
+import { RootStackParamList } from '@/app/_layout'
 import Button from '@/components/Button'
 import ThemedTextInput from '@/components/ThemedTextInput'
 import ThemedView from '@/components/ThemedView'
 import { Colors } from '@/constants/colors'
 import { signIn } from '@/context/authService'
-import { Link } from 'expo-router'
+import { useNavigation } from '@react-navigation/native'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import React, { useState } from 'react'
-import { Alert, StyleSheet, Text, View } from 'react-native'
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+
+type NavigationProp = NativeStackNavigationProp<RootStackParamList, "Login">
 
 const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const navigation = useNavigation<NavigationProp>()
 
     const handleSignIn = async () => {
         if (!email || !password) {
@@ -69,9 +74,10 @@ const Login = () => {
                 textStyle={{ fontSize: 12, fontWeight: 'light', color: Colors.text }}
             />
             <View style={{ position: 'absolute', bottom: 10, flexDirection: 'row', justifyContent: 'center', alignSelf: 'center', alignItems: 'center', marginVertical: 20 }}>
-                <Text>
-                    <Text style={{ fontSize: 16, fontWeight: 'regular', color: Colors.text }}>Don't have an account?</Text> <Link href="/(auth)/register"> <Text style={{ fontSize: 16, fontWeight: 'regular', color: Colors.primaryNormal }}>Sign Up</Text></Link>
-                </Text>
+                <Text style={{ fontSize: 16, fontWeight: 'regular', color: Colors.text }}>Don't have an account? </Text>
+                <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+                    <Text style={{ fontSize: 16, fontWeight: 'regular', color: Colors.primaryNormal }}>Sign Up</Text>
+                </TouchableOpacity>
             </View>
 
         </ThemedView>
