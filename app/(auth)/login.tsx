@@ -1,20 +1,18 @@
-import { RootStackParamList } from '@/app/_layout'
 import Button from '@/components/Button'
 import ThemedTextInput from '@/components/ThemedTextInput'
 import ThemedView from '@/components/ThemedView'
 import { Colors } from '@/constants/colors'
 import { signIn } from '@/context/authService'
-import { useNavigation } from '@react-navigation/native'
-import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import { useRouter } from 'expo-router'
 import React, { useState } from 'react'
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
-type NavigationProp = NativeStackNavigationProp<RootStackParamList, "Login">
+
 
 const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const navigation = useNavigation<NavigationProp>()
+    const router = useRouter()
 
     const handleSignIn = async () => {
         if (!email || !password) {
@@ -23,7 +21,7 @@ const Login = () => {
         }
         try {
             await signIn(email, password)
-            Alert.alert("Success", "Account created!")
+            router.replace('/(dashboard)/home')
         } catch (error: any) {
             Alert.alert('Failed', 'Wrong Email or Password')
         }
@@ -75,7 +73,7 @@ const Login = () => {
             />
             <View style={{ position: 'absolute', bottom: 10, flexDirection: 'row', justifyContent: 'center', alignSelf: 'center', alignItems: 'center', marginVertical: 20 }}>
                 <Text style={{ fontSize: 16, fontWeight: 'regular', color: Colors.text }}>Don't have an account? </Text>
-                <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+                <TouchableOpacity onPress={() => router.push("/register")}>
                     <Text style={{ fontSize: 16, fontWeight: 'regular', color: Colors.primaryNormal }}>Sign Up</Text>
                 </TouchableOpacity>
             </View>

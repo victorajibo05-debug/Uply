@@ -13,7 +13,7 @@ export default function ProfileScreen() {
             <View style={{ flexDirection: 'row', marginVertical: 15, marginHorizontal: 5 }}>
                 <Text style={styles.text}>Profile</Text>
             </View>
-            <View style={{ marginHorizontal: 5, width: 346, height: 150, backgroundColor: Colors.cardBackground, borderRadius: 15, marginBottom: 20 }}>
+            <View style={{ marginHorizontal: 5, width: 346, height: 150, borderRadius: 15, marginBottom: 20 }}>
                 <View style={{ flexDirection: 'row', marginVertical: 7, alignSelf: 'flex-start', marginHorizontal: 5, alignItems: 'center', marginBottom: 7 }}>
                     <ProfilePicture
                         uri="https://images.unsplash.com/photo-1506794778202-cad84cf45f1a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
@@ -89,7 +89,7 @@ export default function ProfileScreen() {
             <Button
                 title="Logout"
                 onPress={() => { }}
-                style={{ backgroundColor: Colors.gymIcon, paddingVertical: 20, paddingHorizontal: 100, alignSelf: 'center', marginVertical: 15 }}
+                style={{ position: 'absolute', bottom: 10, backgroundColor: Colors.gymIcon, paddingVertical: 20, paddingHorizontal: 100, alignSelf: 'center', marginVertical: 15 }}
                 textStyle={{ fontSize: 12, fontWeight: 'light', color: Colors.text }}
             />
 
