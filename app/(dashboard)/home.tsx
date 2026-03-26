@@ -1,6 +1,8 @@
 import { images } from '@/assets/images/index'
+import FAB from '@/components/FAB'
 import ThemedView from '@/components/ThemedView'
 import { Colors } from '@/constants/colors'
+import { useProfile } from '@/Hooks/useProfile'
 import { Ionicons } from '@expo/vector-icons'
 import { Link } from 'expo-router'
 import React from 'react'
@@ -10,6 +12,7 @@ import { FlatList, Pressable, ScrollView, StyleSheet, Text, View } from 'react-n
 import ForYoucard from '@/components/ForYoucard'
 import Happeningsooncard from '@/components/Happeningsooncard'
 import ProfilePicture from '@/components/ProfilePicture'
+
 
 
 const happeningSoonData = [
@@ -67,15 +70,17 @@ const forYouData = [
 ]
 
 const Home = () => {
+    const { username, loading } = useProfile();
     return (
-        <ScrollView>
-            <ThemedView style={styles.container} safe={true}>
+
+        <ThemedView style={styles.container} safe={true}>
+            <ScrollView>
                 <View style={styles.header}>
                     <ProfilePicture
                         uri="https://images.unsplash.com/photo-1506794778202-cad84cf45f1a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
                         size={45}
                     />
-                    <Text style={styles.headerTitle}>Welcome, Caleb</Text>
+                    <Text style={styles.headerTitle}>{loading ? "Loading..." : "Welcome back, " + [username]}</Text>
                 </View>
 
                 <View style={styles.content}>
@@ -162,10 +167,13 @@ const Home = () => {
                         showsVerticalScrollIndicator={false}
                     />
                 </View>
+            </ScrollView>
+            <FAB onPress={() => console.log("Add")} />
+        </ThemedView >
 
-            </ThemedView >
 
-        </ScrollView>
+
+
     )
 }
 
