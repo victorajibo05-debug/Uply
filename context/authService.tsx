@@ -15,11 +15,7 @@ export const signUp = async (username: string, email: string, password: string) 
 
     const user = data.user
 
-    await supabase.from("profiles").insert({
-        id: user?.id,
-        username: username,
-        email: email
-    })
+    if (!user) throw new Error("User creation failed")
 
 
 }
